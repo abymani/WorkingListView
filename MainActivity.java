@@ -10,47 +10,35 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] android_versions={
-            "cupcake",
-            "Donoir",
-            "Gingerbread",
-            "Froyo",
-            "HoneyComb",
-            "Jellybean",
-            "Lollipop",
-            "rockneoll",
-            "Google",
-            "blooger",
-            "Pakistan"
 
-    };
-
-    String[] android_ver={
-            "cupcake",
-            "Donoir",
-            "Gingerbread",
-            "Froyo",
-            "HoneyComb",
-
-
-    };
+    int[] moviePosterResources= {R.drawable.img1,R.drawable.img2,
+            R.drawable.img3,R.drawable.img4,R.drawable.img5,
+            R.drawable.img6,R.drawable.img7};
+    String[] movieRatings;
+    String[] movieTitles;
+    MovieAdapter adapter;
 
     ListView versions;
-    ArrayAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         versions=(ListView)findViewById(R.id.listview);
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android_versions);
+        movieRatings=getResources().getStringArray(R.array.movieRatings);
+        movieTitles=getResources().getStringArray(R.array.Movie_title);
+        adapter=new MovieAdapter(getApplicationContext(),R.layout.list_item_layout);
         versions.setAdapter(adapter);
 
-        versions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),(String)adapterView.getItemAtPosition(i),Toast.LENGTH_LONG).show();
-            }
-        });
+        int i=0;
+        for(String titles:movieTitles)
+        {
+            MovieDataProvider movieDataProvider= new MovieDataProvider(moviePosterResources[i],titles,movieRatings[i]);
+            adapter.add(movieDataProvider);
+            i++;
+        }
+
+
 
 
 
