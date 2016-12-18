@@ -31,12 +31,7 @@ public class MainActivity extends AppCompatActivity {
             "Gingerbread",
             "Froyo",
             "HoneyComb",
-            "Jellybean",
-            "Lollipop",
-            "rockneoll",
-            "Google",
-            "blooger",
-            "Pakistan"
+
 
     };
 
